@@ -3,34 +3,43 @@ package com.cursomc.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Recurso implements Serializable {
+public class Ambiente implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private boolean status;
+	private String descricao;
 	
-	@ManyToMany(mappedBy="recursos")	
-	private List<Ambiente> ambientes = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name="AMBIENTE_RECURSO",
+		joinColumns = @JoinColumn(name="ambiente_id"),
+		inverseJoinColumns = @JoinColumn(name="recurso_id")
+			)
+	private List<Recurso> recursos = new ArrayList<>();
 	
-	public Recurso() {
+	
+	
+	public Ambiente() {
 		
 	}
-
-	public Recurso(Integer id, String nome, boolean status) {
+	
+	public Ambiente(Integer id, String nome, String descricao) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.status = status;
+		this.descricao = descricao;
 	}
 
 	public Integer getId() {
@@ -48,21 +57,21 @@ public class Recurso implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public boolean isStatus() {
-		return status;
+
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
-	public List<Ambiente> getAmbientes() {
-		return ambientes;
+	public List<Recurso> getRecursos() {
+		return recursos;
 	}
 
-	public void setAmbientes(List<Ambiente> ambientes) {
-		this.ambientes = ambientes;
+	public void setRecursos(List<Recurso> recursos) {
+		this.recursos = recursos;
 	}
 
 	@Override
@@ -81,7 +90,7 @@ public class Recurso implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Recurso other = (Recurso) obj;
+		Ambiente other = (Ambiente) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -89,5 +98,5 @@ public class Recurso implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

@@ -7,14 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.cursomc.domain.Recurso;
-import com.cursomc.services.RecursoService;
+import com.cursomc.services.AmbienteService;
 
 @RestController
-@RequestMapping(value="/recursos")
-public class RecursoResource {
-	
+@RequestMapping(value="/ambientes")
+public class AmbienteResource {
 	@Autowired
-	private RecursoService service;
+	private AmbienteService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
