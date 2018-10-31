@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Ambiente implements Serializable{
@@ -24,7 +24,7 @@ public class Ambiente implements Serializable{
 	private String nome;
 	private String descricao;
 	
-	@JsonBackReference
+	@JsonManagedReference
 	@ManyToMany
 	@JoinTable(name="AMBIENTE_RECURSO",
 		joinColumns = @JoinColumn(name="ambiente_id"),

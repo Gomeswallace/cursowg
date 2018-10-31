@@ -18,4 +18,11 @@ public class RecursoService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Recurso.class.getName()));
 	}
+	
+	public Recurso insert(Recurso obj) {
+		//nulo faz insert, caso contrario faz update
+		obj.setId(null);
+		
+		return repo.save(obj);
+	}
 }

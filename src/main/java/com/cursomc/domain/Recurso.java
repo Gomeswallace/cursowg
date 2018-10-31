@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Recurso implements Serializable {
@@ -22,8 +22,8 @@ public class Recurso implements Serializable {
 	private Integer id;
 	private String nome;
 	private boolean status;
-	
-	@JsonManagedReference
+		
+	@JsonBackReference
 	@ManyToMany(mappedBy="recursos")	
 	private List<Ambiente> ambientes = new ArrayList<>();
 	
