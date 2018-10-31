@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Recurso implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,6 +21,7 @@ public class Recurso implements Serializable {
 	private String nome;
 	private boolean status;
 	
+	@JsonManagedReference
 	@ManyToMany(mappedBy="recursos")	
 	private List<Ambiente> ambientes = new ArrayList<>();
 	

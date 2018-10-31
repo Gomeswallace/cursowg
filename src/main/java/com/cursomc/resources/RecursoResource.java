@@ -22,5 +22,4 @@ public class RecursoResource {
 		Recurso obj = service.buscar(id);
 		return ResponseEntity.ok(obj);
 	}
-
 }
