@@ -2,17 +2,26 @@ package com.cursomc.domain;
 
 import java.io.Serializable;
 
-public class Categoria implements Serializable {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Recurso implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	private boolean status;
 	
-	public Categoria() {
+	public Recurso() {
 		
 	}
 
-	public Categoria(Integer id, String nome) {
+	public Recurso(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -33,6 +42,14 @@ public class Categoria implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 
 	@Override
 	public int hashCode() {
@@ -50,7 +67,7 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Recurso other = (Recurso) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
