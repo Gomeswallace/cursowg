@@ -3,16 +3,11 @@ package com.cursomc.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Ambiente implements Serializable{
@@ -23,7 +18,8 @@ public class Ambiente implements Serializable{
 	private Integer id;
 	private String nome;
 	private String descricao;
-	
+
+	/*
 	@JsonManagedReference
 	@ManyToMany
 	@JoinTable(name="AMBIENTE_RECURSO",
@@ -31,8 +27,10 @@ public class Ambiente implements Serializable{
 		inverseJoinColumns = @JoinColumn(name="recurso_id")
 			)
 	private List<Recurso> recursos = new ArrayList<>();
+	*/
 	
-	
+	@OneToMany(mappedBy = "ambiente")
+	private List<Recurso> recursos = new ArrayList<>();
 	
 	public Ambiente() {
 		
@@ -69,6 +67,7 @@ public class Ambiente implements Serializable{
 		this.descricao = descricao;
 	}
 	
+	
 	public List<Recurso> getRecursos() {
 		return recursos;
 	}
@@ -76,7 +75,7 @@ public class Ambiente implements Serializable{
 	public void setRecursos(List<Recurso> recursos) {
 		this.recursos = recursos;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -101,5 +100,6 @@ public class Ambiente implements Serializable{
 			return false;
 		return true;
 	}
+
 
 }

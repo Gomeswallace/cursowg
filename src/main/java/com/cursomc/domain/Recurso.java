@@ -1,17 +1,12 @@
 package com.cursomc.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Recurso implements Serializable {
@@ -22,24 +17,25 @@ public class Recurso implements Serializable {
 	private Integer id;
 	private String nome;
 	private boolean status;
-		
-	@JsonBackReference
-	@ManyToMany(mappedBy="recursos")	
-	private List<Ambiente> ambientes = new ArrayList<>();
-	
+			
 	@ManyToOne
-	@JoinColumn(name="tiporecurso_id")
-	private TipoRecurso tipoRecurso;	
+	@JoinColumn(name="ambiente_id")
+	private Ambiente ambiente;
+	
+//	@ManyToOne
+//	@JoinColumn(name="tiporecurso_id")
+//	private TipoRecurso tipoRecurso;	
 	
 	public Recurso() {
 		
 	}
 
-	public Recurso(Integer id, String nome, boolean status) {
+	public Recurso(Integer id, String nome, boolean status, Ambiente ambiente) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.status = status;
+		this.ambiente = ambiente;
 	}
 
 	public Integer getId() {
@@ -66,14 +62,14 @@ public class Recurso implements Serializable {
 		this.status = status;
 	}
 	
-	public List<Ambiente> getAmbientes() {
-		return ambientes;
+	public Ambiente getAmbiente() {
+		return ambiente;
 	}
 
-	public void setAmbientes(List<Ambiente> ambientes) {
-		this.ambientes = ambientes;
+	public void setAmbiente(Ambiente ambiente) {
+		this.ambiente = ambiente;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -98,5 +94,4 @@ public class Recurso implements Serializable {
 			return false;
 		return true;
 	}
-	
 }

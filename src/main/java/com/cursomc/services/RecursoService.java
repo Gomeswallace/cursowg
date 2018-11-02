@@ -10,7 +10,7 @@ import com.cursomc.services.exceptions.ObjectNotFoundException;
 @Service
 public class RecursoService {
 	
-	@Autowired
+	@Autowired //será instancia automaticamente pelo spring
 	public RecursoRepository repo;
 
 	public Recurso buscar(Integer id) {
