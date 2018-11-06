@@ -22,9 +22,9 @@ public class AmbienteResource {
 	private AmbienteService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Ambiente> find(@PathVariable Integer id) {
 		
-		Ambiente obj = service.buscar(id);
+		Ambiente obj = service.find(id);
 		return ResponseEntity.ok(obj);
 	}
 	
@@ -36,8 +36,14 @@ public class AmbienteResource {
 					.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		
 		//retorna a nova url criada
-		return ResponseEntity.created(uri).build();
-		
+		return ResponseEntity.created(uri).build();		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.POST)
+	public ResponseEntity<Void> update(@RequestBody Ambiente obj, @PathVariable Integer id){
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 
 }
