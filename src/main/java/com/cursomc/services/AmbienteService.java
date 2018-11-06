@@ -1,5 +1,6 @@
 package com.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -39,6 +40,10 @@ public class AmbienteService {
 		} catch (DataIntegrityViolationException ex) {
 			throw new DataIntegrityException("Não é possível excluir um Ambiente que possui Recursos!");
 		}
+	}
+	
+	public List<Ambiente> findAll(){
+		return repo.findAll();
 	}
 
 }
