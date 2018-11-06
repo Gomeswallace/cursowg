@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Recurso implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -17,7 +19,8 @@ public class Recurso implements Serializable {
 	private Integer id;
 	private String nome;
 	private boolean status;
-			
+		
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="ambiente_id")
 	private Ambiente ambiente;

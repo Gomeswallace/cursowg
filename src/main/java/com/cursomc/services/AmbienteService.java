@@ -18,5 +18,11 @@ public class AmbienteService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Ambiente.class.getName()));
 	}
+	
+	
+	public Ambiente insert(Ambiente obj) {
+		obj.setId(null);;		
+		return repo.save(obj);		
+	}
 
 }

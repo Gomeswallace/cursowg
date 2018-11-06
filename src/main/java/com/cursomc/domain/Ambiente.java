@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Ambiente implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -29,6 +31,7 @@ public class Ambiente implements Serializable{
 	private List<Recurso> recursos = new ArrayList<>();
 	*/
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "ambiente")
 	private List<Recurso> recursos = new ArrayList<>();
 	
@@ -100,6 +103,4 @@ public class Ambiente implements Serializable{
 			return false;
 		return true;
 	}
-
-
 }
